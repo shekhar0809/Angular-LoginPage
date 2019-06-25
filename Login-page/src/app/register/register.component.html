@@ -1,73 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Crete+Round&display=swap" rel="stylesheet">
-  <title>Document</title>
-</head>
-<body>
+<mat-card >
+  <mat-card-header>
+    <mat-card-title>Sign Up</mat-card-title>
+    <mat-card-subtitle>enter your details and start your journey with us.</mat-card-subtitle>
 
-  <main>
-    <nav >
-      <a routerLink="/" ><span class="btn2" >home</span></a>
-
-      <a routerLink="../contact"><span class="btn2" >Contact us</span></a>
-    </nav>
-    <div class="wrapper" >
-      
-      
-      <div class="container-r" >
-
-          <div class="logo" >
-              LOGO
-          </div>
-
-        <div class="salutation-r" >
-          Create a new account
-        </div>
-        
-        <form (submit)="getData($event)">
-            <div class="form-wrapper" >
-            <div class="field" >
-              <input type="text" placeholder="First name" name="firstname" id="firstname" required >
-            </div>
-            <div class="field" >
-              <input type="text" placeholder="Last name" name="lastname" id="lastname" >
-            </div>
-            <div class="field" >
-              <input type="email" placeholder="Email" name="email" id="email" required >
-            </div>
-            <div class="field" >
-              <input type="password" placeholder="password" value="" id="password" required >
-            </div>
-          </div>
-          <div class="btn" >
-            <button  class="btn2" type="submit">Sign up</button>
-          </div>
-          </form>
-        </div>
-        
-      <div class="container-l" >
-          
-          <div class="details" >
-            <div class="salutation-l" >
-              <p>Welcome Back!</p>
-            </div>
-            <div class="text" >
-              <p>to keep connected with us please login with your personal info.</p>
-            </div>
-            <a routerLink="../login" >
-              <div class="btn" >
-                <button class="btn1" type="submit">Sign in</button>
-              </div>
-            </a>
-          </div>
-        </div>
-    </div>
-  </main>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="registerForm" (ngSubmit)=onSubmit(registerForm) fxLayout="column">
+      <mat-form-field class="width400" >
+        <input matInput placeholder="First first" formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field class="width400" >
+        <input matInput placeholder="Last name" formControlName="lastName">
+      </mat-form-field>
+      <mat-form-field class="width400" >
+        <input matInput type="text" formControlName="userName" placeholder="username" >
+      </mat-form-field>
+      <mat-form-field class="width400" >
+        <input matInput placeholder="E-mail" formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="width400" >
+        <input matInput placeholder="password" formControlName="password">
+      </mat-form-field>
+      <mat-card-content>
+          <p>
+            By clicking the button below, you agree to the terms of service
+          </p>
+        </mat-card-content>
+      <button class="width400" mat-raised-button [disabled]="!registerForm.valid" type="submit">Sign Up</button>
+    </form>
+  </mat-card-content>
   
-</body>
-</html>
+</mat-card>

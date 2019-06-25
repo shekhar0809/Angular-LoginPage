@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-
-  <main>
-    <a routerLink="login" >
-      <div>
-        Sign in
-      </div>
-    </a>
-
-    <a routerLink="register">
-      <div>
-        Sign up
-      </div>
-    </a>
-
-    <button (click)="display()" type="submit">show Users</button>
-  </main>
-  
-</body>
-</html>
+<mat-tab-group>
+  <mat-tab label="Sign In"> 
+      <nav mat-tab-nav-bar>
+          <a mat-tab-link
+              *ngFor="let link of navLinks"
+              [routerLink]="link.path"
+              routerLinkActive #rla="routerLinkActive"
+              [active]="rla.isActive">
+            {{link.label}}
+          </a>
+        </nav>
+        <app-login></app-login>
+  </mat-tab>
+  <mat-tab label="Sign Up"> 
+      <nav mat-tab-nav-bar>
+          <a mat-tab-link
+              *ngFor="let link of navLinks"
+              [routerLink]="link.path"
+              routerLinkActive #rla="routerLinkActive"
+              [active]="rla.isActive">
+            {{link.label}}
+          </a>
+        </nav>
+      <app-register></app-register>
+  </mat-tab>
+</mat-tab-group>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SignupService } from '../signup.service';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,34 +9,28 @@ import { SignupService } from '../signup.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  registerForm: FormGroup = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: [''],
+    userName: [''],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  })
 
-  constructor(
-    private route: ActivatedRoute,
-    private signupService: SignupService
-  ) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
   }
 
-  getData(event) {
-    // event.preventDefault()
-    
-    const target = event.target
+  onSubmit(form: FormGroup) {
 
-    let firstname = target.querySelector('#firstname').value ;
-    let lastname = target.querySelector('#lastname').value ;
-    let email = target.querySelector('#email').value  ;
-    let pass1 = target.querySelector('#password').value ;
-
-    let details =  {
-      "Firstname" : firstname,
-      "Lastname" : lastname,
-      "email" : email,
-      "password" : pass1
+    if (form.invalid) {
+      return
     }
-
-    console.log(details)
-    this.signupService.addUser(details)
+    else {
+      console.log(form.value)
+    }
   }
 
 

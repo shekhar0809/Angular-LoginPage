@@ -1,62 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Crete+Round&display=swap" rel="stylesheet">
-  <title>Document</title>
-</head>
-<body>
-
-  <main>
-    <nav >
-      <a routerLink="/" ><span class="btn2" >home</span></a>
-
-      <a routerLink="../contact"><span class="btn2" >Contact us</span></a>
-    </nav>
-    <div class="wrapper" >
-      <div class="container-l" >
-        <div class="logo" >
-          LOGO
-        </div>
-        <div class="details" >
-          <div class="salutation-l" >
-            <p>Hello, friend!</p>
-          </div>
-          <div class="text" >
-            <p>enter your details and start your journey with us.</p>
-          </div>
-          <a routerLink="../register" >
-            <div class="btn" >
-              <button class="btn1" type="submit">Sign up</button>
-            </div>
-          </a>
-        </div>
-      </div>
-      
-      <div class="container-r" >
-
-        <div class="salutation-r" >
-          Sign in to your account
-        </div>
-        <div class="form-wrapper" >
-          <div class="field" >
-            <input type="email" placeholder="Email" name="email" id="" required >
-          </div>
-          <div class="field" >
-            <input type="password" placeholder="password" value="" required >
-          </div>
-
-        </div>
-        <div class="btn" >
-          <button class="btn2" type="submit">Sign in</button>
-        </div>
-      </div>
-      
-    </div>
-  </main>
-  
-</body>
-</html>
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Log in</mat-card-title>
+      <mat-card-subtitle>Welcome back!</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)=onLogin(loginForm) fxLayout="column" >
+        <mat-form-field>
+          <input matInput type="text" formControlName="username" placeholder="username" >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" formControlName="password" placeholder="password" >
+        </mat-form-field>
+        <button mat-raised-button [disabled]="!loginForm.valid" type="submit">Sign In</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
