@@ -19,7 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     AppComponent,
     WelcomeComponent,
     LoginComponent,
-    
+
     RegisterComponent,
     ContactComponent
   ],
@@ -56,8 +56,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         component: WelcomeComponent
       }
     ]),
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

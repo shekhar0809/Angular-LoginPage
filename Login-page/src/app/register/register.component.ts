@@ -17,20 +17,17 @@ export class RegisterComponent implements OnInit {
     password: ['', Validators.required]
   })
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private signup: SignupService
+  ) { }
 
   ngOnInit() {
 
   }
 
   onSubmit(form: FormGroup) {
-
-    if (form.invalid) {
-      return
-    }
-    else {
-      console.log(form.value)
-    }
+    this.signup.addUser(form.value);
   }
 
 

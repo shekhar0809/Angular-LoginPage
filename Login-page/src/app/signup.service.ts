@@ -7,17 +7,14 @@ export class SignupService {
 
   constructor() { }
 
-  users = []
-
-  addUser(new_user) {
+  addUser(object) {
     //check if email already exists
 
-    this.users.push(new_user)
-    alert("You have been registered!")
+    localStorage.setItem( object.userName , JSON.stringify(object) );
   }
 
   getUsers() {
-    return this.users
+
   }
 
 
