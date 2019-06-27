@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SignupService } from '../signup.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { validateBasis } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-register',
@@ -12,9 +13,11 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = this.formBuilder.group({
     firstName: ['', Validators.required],
     lastName: [''],
-    userName: [''],
+    userName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
+    isLoggedin: [false]
+    
   })
 
   constructor(
@@ -28,6 +31,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.signup.addUser(form.value);
+    alert("you have been registered!");
   }
 
 

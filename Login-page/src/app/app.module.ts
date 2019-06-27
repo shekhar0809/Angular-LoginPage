@@ -12,6 +12,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule,MatCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { ProfileComponent } from './profile/profile.component';
+
 
 
 @NgModule({
@@ -21,10 +26,14 @@ import { MatTabsModule } from '@angular/material/tabs';
     LoginComponent,
 
     RegisterComponent,
-    ContactComponent
+    ContactComponent,
+    NavbarComponent,
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
+    MatMenuModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatButtonModule, 
@@ -37,15 +46,15 @@ import { MatTabsModule } from '@angular/material/tabs';
     RouterModule.forRoot([
       {
         path: 'login',
-        component: LoginComponent
-      },
+        component: WelcomeComponent
+      } ,
       {
         path: 'register',
-        component: RegisterComponent
+        component: WelcomeComponent
       },
       {
         path: 'home' ,
-        component: WelcomeComponent
+        component: HomeComponent
       },
       {
         path: 'contact' ,
@@ -53,7 +62,7 @@ import { MatTabsModule } from '@angular/material/tabs';
       },
       {
         path: '' ,
-        component: WelcomeComponent
+        component: HomeComponent
       }
     ]),
     BrowserAnimationsModule,

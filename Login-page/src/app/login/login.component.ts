@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   onLogin( form: FormGroup )
   {
-    this.login.login(form.value)
+    this.login.login(form.value);
   }
 
 }

@@ -17,8 +17,8 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  display() {
-    console.log(this.signupService.getUsers())
-  }
+  // display() {
+  //   console.log(this.signupService.getUsers())
+  // }
 
 }

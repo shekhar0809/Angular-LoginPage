@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SignupService {
+  exists = false;
 
   constructor() { }
 
@@ -13,9 +14,18 @@ export class SignupService {
     localStorage.setItem( object.userName , JSON.stringify(object) );
   }
 
-  getUsers() {
-
+  validate(key) {
+    // undefined is falsy
+    return Boolean(localStorage.getItem(key))
   }
+
+
+  // userExists( key ) {
+  //   if( this.validate(key) )
+  //   {
+  //     this.exists = true;
+  //   }
+  // }
 
 
 }

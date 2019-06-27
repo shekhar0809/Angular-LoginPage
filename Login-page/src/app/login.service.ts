@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { validateBasis } from '@angular/flex-layout';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,19 @@ export class LoginService {
 
   login( obj )
   {
-    if(this.validate( obj.username )) {
-      if( obj.password === this.getItem(obj.username).password ) {
+    if( !this.validate( obj.username ) ) {
+      alert("username not registered!");
+    }
+
+    if(this.validate( obj.username )) {     // check if user exists
+      let user = this.getItem(obj.username)
+      if( obj.password === user.password ) {  // check if password matches
         alert("you have been logged in!");
-        return true;
+        user.isLoggedin = true;
+        localStorage.setItem(user.userName , JSON.stringify(user) );
       }
       else {
         alert("something went wrong!");
-        return false ;
       }
     }
   }
