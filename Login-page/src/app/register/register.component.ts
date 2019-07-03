@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
     userName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
-    isLoggedin: [false]
-    
+    isLoggedin: [false],
+    phone: [['']]    
   })
 
   constructor(
@@ -33,6 +33,4 @@ export class RegisterComponent implements OnInit {
     this.signup.addUser(form.value);
     alert("you have been registered!");
   }
-
-
 }

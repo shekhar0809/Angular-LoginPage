@@ -24,21 +24,22 @@ export class LoginService {
 
   login( obj )
   {
-    if( !this.validate( obj.username ) ) {
+    if( !this.validate( obj.username ) ) {  // check if user exists
       alert("username not registered!");
+      return;
     }
 
-    if(this.validate( obj.username )) {     // check if user exists
-      let user = this.getItem(obj.username)
-      if( obj.password === user.password ) {  // check if password matches
-        alert("you have been logged in!");
-        user.isLoggedin = true;
-        localStorage.setItem(user.userName , JSON.stringify(user) );
-      }
-      else {
-        alert("something went wrong!");
-      }
+    let user = this.getItem(obj.username)
+    if( obj.password === user.password ) {  // check if password matches
+      alert("you have been logged in!");
+      user.isLoggedin = true;
+      localStorage.setItem(user.userName , JSON.stringify(user) );
     }
+    else {
+      alert("Invalid username/password!");
+    }
+    
+    return user;
   }
 
 }

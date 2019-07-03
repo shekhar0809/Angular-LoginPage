@@ -1,0 +1,42 @@
+<mat-card >
+  <mat-card-header>
+    <div mat-card-avatar ></div>
+    <mat-card-title> Dashboard  </mat-card-title>
+    <mat-card-subtitle>Welcome, {{user.firstName}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+  
+    <div>
+      <form [formGroup]="emailForm" (ngSubmit)=onLogin(emailForm) fxLayout="column" >
+        <mat-form-field>
+          <input matInput type="email" formControlName="email" value="{{user.email}}" >
+        </mat-form-field>
+        <button mat-raised-button [disabled]="!emailForm.valid" type="submit">Save</button>
+      </form>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </div>
+
+    <div>
+      <form [formGroup]="passwordForm" (ngSubmit)=onLogin(passwordForm) fxLayout="column" >
+        <mat-form-field>
+          <input matInput type="password" formControlName="currentPassword" placeholder="Current Password" >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" formControlName="newPassword" placeholder="New Password" >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password" >
+        </mat-form-field>
+        <button mat-raised-button [disabled]="!passwordForm.valid" type="submit">Save</button>
+      </form>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </div>
+
+    
+
+
+  </mat-card-content>
+
+</mat-card>

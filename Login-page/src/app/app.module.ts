@@ -16,6 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AdminModule } from './admin/admin.module';
 
 
 
@@ -33,6 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    AdminModule,
     MatMenuModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -59,6 +62,10 @@ import { ProfileComponent } from './profile/profile.component';
       {
         path: 'contact' ,
         component: ContactComponent
+      },
+      {
+        path: 'dashboard/:uname' ,
+        component: DashboardComponent
       },
       {
         path: '' ,
