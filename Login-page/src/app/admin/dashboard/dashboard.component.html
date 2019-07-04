@@ -1,40 +1,83 @@
-<mat-card >
+<mat-card>
   <mat-card-header>
-    <div mat-card-avatar ></div>
-    <mat-card-title> Dashboard  </mat-card-title>
+    <div mat-card-avatar></div>
+    <mat-card-title> Dashboard </mat-card-title>
     <mat-card-subtitle>Welcome, {{user.firstName}}</mat-card-subtitle>
   </mat-card-header>
+
+</mat-card>
+
+
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title> Email </mat-card-title>
+    <mat-card-subtitle>Change your email address</mat-card-subtitle>
+  </mat-card-header>
   <mat-card-content>
-  
-    <div>
-      <form [formGroup]="emailForm" (ngSubmit)=onLogin(emailForm) fxLayout="column" >
-        <mat-form-field>
-          <input matInput type="email" formControlName="email" value="{{user.email}}" >
-        </mat-form-field>
-        <button mat-raised-button [disabled]="!emailForm.valid" type="submit">Save</button>
-      </form>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </div>
+
+      <div *ngIf="!emailDisable">
+          <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
+          <button (click)=toggleEmail() mat-button>EDIT</button>
+      </div>
 
     <div>
-      <form [formGroup]="passwordForm" (ngSubmit)=onLogin(passwordForm) fxLayout="column" >
-        <mat-form-field>
-          <input matInput type="password" formControlName="currentPassword" placeholder="Current Password" >
+      <form [formGroup]="emailForm" (ngSubmit)=onChangeEmail(emailForm) fxLayout="column">
+        
+        <mat-form-field *ngIf="emailDisable">
+          <input matInput type="email" formControlName="email" placeholder="Enter a new Email">
+          <mat-error *ngIf="emailForm.controls['email'].errors?.required &&
+  emailForm.controls['email'].touched">
+            Please enter a valid email address
+          </mat-error>
         </mat-form-field>
+
+        <span *ngIf="emailDisable">
+          <button mat-raised-button [disabled]="!emailForm.valid" type="submit">Save</button>
+          <button (click)=toggleEmail() mat-button>Cancel</button>
+        </span>
+
+
+      </form>
+
+    </div>
+
+
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title> Password </mat-card-title>
+    <mat-card-subtitle>change your password</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div>
+      <mat-card *ngIf="!passDisable">
+        <button (click)=togglePass() mat-button>Change Password</button>
+      </mat-card>
+      <form *ngIf="passDisable" [formGroup]="passwordForm" (ngSubmit)=onChangePass(passwordForm) fxLayout="column">
+
         <mat-form-field>
-          <input matInput type="password" formControlName="newPassword" placeholder="New Password" >
+          <input matInput type="password" formControlName="currentPassword" placeholder="Current Password">
         </mat-form-field>
+
         <mat-form-field>
-          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password" >
+          <input matInput type="password" formControlName="newPassword" placeholder="New Password">
         </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password">
+        </mat-form-field>
+
         <button mat-raised-button [disabled]="!passwordForm.valid" type="submit">Save</button>
       </form>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
     </div>
 
-    
+
 
 
   </mat-card-content>
