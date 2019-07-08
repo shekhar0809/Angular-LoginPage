@@ -3,6 +3,9 @@
     <div mat-card-avatar></div>
     <mat-card-title> Dashboard </mat-card-title>
     <mat-card-subtitle>Welcome, {{user.firstName}}</mat-card-subtitle>
+
+    <button (click)=signOut() mat-button>Log out</button>
+
   </mat-card-header>
 
 </mat-card>
@@ -16,14 +19,14 @@
   </mat-card-header>
   <mat-card-content>
 
-      <div *ngIf="!emailDisable">
-          <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
-          <button (click)=toggleEmail() mat-button>EDIT</button>
-      </div>
+    <div *ngIf="!emailDisable">
+      <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
+      <button (click)=toggleEmail() mat-button>EDIT</button>
+    </div>
 
     <div>
       <form [formGroup]="emailForm" (ngSubmit)=onChangeEmail(emailForm) fxLayout="column">
-        
+
         <mat-form-field *ngIf="emailDisable">
           <input matInput type="email" formControlName="email" placeholder="Enter a new Email">
           <mat-error *ngIf="emailForm.controls['email'].errors?.required &&
@@ -32,10 +35,10 @@
           </mat-error>
         </mat-form-field>
 
-        <span *ngIf="emailDisable">
-          <button mat-raised-button [disabled]="!emailForm.valid" type="submit">Save</button>
-          <button (click)=toggleEmail() mat-button>Cancel</button>
-        </span>
+          <button *ngIf="emailDisable" mat-raised-button [disabled]="!emailForm.valid" type="submit">Save</button>
+
+          <button *ngIf="emailDisable" (click)=toggleEmail() mat-button>Cancel</button>
+
 
 
       </form>
@@ -61,19 +64,23 @@
       </mat-card>
       <form *ngIf="passDisable" [formGroup]="passwordForm" (ngSubmit)=onChangePass(passwordForm) fxLayout="column">
 
-        <mat-form-field>
+        <mat-form-field appearance="outline" >
           <input matInput type="password" formControlName="currentPassword" placeholder="Current Password">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline" >
           <input matInput type="password" formControlName="newPassword" placeholder="New Password">
         </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password">
+        <mat-form-field appearance="outline" >
+          <input matInput type="password" formControlName="confirmPassword" [errorStateMatcher]="errorMatcher" placeholder="Confirm Password">
+          <mat-error *ngIf="passwordForm.hasError('passwordsDoNotMatch')">
+            Passwords do not match!
+          </mat-error>
         </mat-form-field>
-
         <button mat-raised-button [disabled]="!passwordForm.valid" type="submit">Save</button>
+        <button (click)=togglePass() mat-button>Cancel</button>
+
       </form>
     </div>
 

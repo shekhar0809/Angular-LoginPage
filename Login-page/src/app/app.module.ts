@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminModule } from './admin/admin.module';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -36,6 +37,7 @@ import { AdminModule } from './admin/admin.module';
   imports: [
     BrowserModule,
     AdminModule,
+    MatCheckboxModule,
     MatMenuModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -49,7 +51,7 @@ import { AdminModule } from './admin/admin.module';
     RouterModule.forRoot([
       {
         path: 'login',
-        component: WelcomeComponent
+        component: LoginComponent
       } ,
       {
         path: 'register',

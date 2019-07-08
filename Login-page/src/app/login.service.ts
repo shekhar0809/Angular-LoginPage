@@ -31,7 +31,6 @@ export class LoginService {
 
     let user = this.getItem(obj.username)
     if( obj.password === user.password ) {  // check if password matches
-      alert("you have been logged in!");
       user.isLoggedin = true;
       localStorage.setItem(user.userName , JSON.stringify(user) );
     }

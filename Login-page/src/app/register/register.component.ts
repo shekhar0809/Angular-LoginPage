@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SignupService } from '../signup.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validateBasis } from '@angular/flex-layout';
@@ -17,12 +17,13 @@ export class RegisterComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
     isLoggedin: [false],
-    phone: [['']]    
+    phone: [['']]
   })
 
   constructor(
     private formBuilder: FormBuilder,
-    private signup: SignupService
+    private signup: SignupService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,6 +32,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.signup.addUser(form.value);
-    alert("you have been registered!");
+    this.router.navigate(['/login']);
   }
 }

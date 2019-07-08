@@ -10,20 +10,10 @@ import { LoginService } from '../login.service';
 })
 export class NavbarComponent implements OnInit {
   
-  constructor( 
-    private login : LoginService
-   ) { 
-   }
+  constructor( ) {    }
 
   ngOnInit() {
   }
-  
-  value = "Log In";
 
-  // if logged in, print username
-
-  // if( this.login.login ) {
-  //   value = user.username;
-  // }
 
 }
