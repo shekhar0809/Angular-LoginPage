@@ -19,6 +19,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminModule } from './admin/admin.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AuthGuard } from './auth.guard';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 
@@ -39,6 +41,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     AdminModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatToolbarModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatButtonModule, 
@@ -67,7 +70,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
       },
       {
         path: 'dashboard/:uname' ,
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: '' ,

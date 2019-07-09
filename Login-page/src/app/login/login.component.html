@@ -1,31 +1,31 @@
 <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Log in</mat-card-title>
-      <mat-card-subtitle>Welcome back!</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)=onLogin(loginForm) fxLayout="column" >
-        <mat-form-field>
-          <input matInput type="text" formControlName="username"  placeholder="username" >
-          <mat-error *ngIf="loginForm.controls['username'].errors?.required &&
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Log in</mat-card-title>
+    <mat-card-subtitle>Welcome back!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)=onLogin(loginForm) fxLayout="column">
+      <mat-form-field>
+        <input matInput type="text" formControlName="username" placeholder="username">
+        <mat-error *ngIf="loginForm.controls['username'].errors?.required &&
   loginForm.controls['username'].touched">
           Username is
           <strong>required</strong>
         </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput type="password" formControlName="password"  placeholder="password" >
-          <mat-error *ngIf="loginForm.controls['password'].errors?.required &&
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" formControlName="password" placeholder="password">
+        <mat-error *ngIf="loginForm.controls['password'].errors?.required &&
   loginForm.controls['password'].touched">
           password is
           <strong>required</strong>
         </mat-error>
-        </mat-form-field>
+      </mat-form-field>
 
-        <mat-checkbox formControlName="rememberMe" value="true" >Remember me!</mat-checkbox>
-        <button mat-raised-button [disabled]="!loginForm.valid" type="submit">Sign In</button>
+      <mat-checkbox formControlName="rememberMe" value="true">Remember me!</mat-checkbox>
+      <button mat-raised-button [disabled]="!loginForm.valid" type="submit">Sign In</button>
 
-      </form>
-    </mat-card-content>
-  </mat-card>
+    </form>
+  </mat-card-content>
+</mat-card>
