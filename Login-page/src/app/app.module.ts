@@ -21,6 +21,7 @@ import { AdminModule } from './admin/admin.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AuthGuard } from './auth.guard';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -39,6 +40,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
   imports: [
     BrowserModule,
     AdminModule,
+    MatDialogModule,
     MatCheckboxModule,
     MatMenuModule,
     MatToolbarModule,

@@ -1,82 +1,108 @@
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title> Dashboard </mat-card-title>
-    <mat-card-subtitle>Welcome, {{user.firstName}}</mat-card-subtitle>
+<div class="wrapper">
+  <div class="left-container">
 
-    <button (click)=signOut() mat-button>Log out</button>
+    <mat-card class="example-card">
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Profile Photo">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+        </p>
+      </mat-card-content>
+    </mat-card>
 
-  </mat-card-header>
+  </div>
 
-</mat-card>
+  <div class="right-container">
 
+    <div class="sub-container-1">
+      <mat-card>
+        <mat-card-header>
+          <!-- <div mat-card-avatar></div> -->
+          <mat-card-title> Dashboard </mat-card-title>
+          <mat-card-subtitle>Welcome, {{user.firstName}}</mat-card-subtitle>
 
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title> Email </mat-card-title>
-    <mat-card-subtitle>Change your email address</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
+          <button class="btn-logout"  color="warn"  (click)=signOut() mat-raised-button>Log out</button>
 
-    <div *ngIf="!emailDisable">
-      <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
-      <button (click)=toggleEmail() mat-button>EDIT</button>
-    </div>
-
-    <div>
-      <form [formGroup]="emailForm" (ngSubmit)=onChangeEmail(emailForm) fxLayout="column">
-
-        <mat-form-field *ngIf="emailDisable">
-          <input matInput type="email" formControlName="email" placeholder="Enter a new Email">
-          <mat-error *ngIf="emailForm.controls['email'].errors?.required &&
-  emailForm.controls['email'].touched">
-            Please enter a valid email address
-          </mat-error>
-        </mat-form-field>
-
-          <button *ngIf="emailDisable" mat-raised-button [disabled]="!emailForm.valid" type="submit">Save</button>
-
-          <button *ngIf="emailDisable" (click)=toggleEmail() mat-button>Cancel</button>
-      </form>
-    </div>
-  </mat-card-content>
-
-</mat-card>
-
-<mat-card>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title> Password </mat-card-title>
-    <mat-card-subtitle>change your password</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-
-    <div>
-      <mat-card *ngIf="!passDisable">
-        <button (click)=togglePass() mat-button>Change Password</button>
+        </mat-card-header>
       </mat-card>
-      <form *ngIf="passDisable" [formGroup]="passwordForm" (ngSubmit)=onChangePass(passwordForm) fxLayout="column">
-
-        <mat-form-field appearance="outline" >
-          <input matInput type="password" formControlName="currentPassword" placeholder="Current Password">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" >
-          <input matInput type="password" formControlName="newPassword" placeholder="New Password">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" >
-          <input matInput type="password" formControlName="confirmPassword" [errorStateMatcher]="errorMatcher" placeholder="Confirm Password">
-          <mat-error *ngIf="passwordForm.hasError('passwordsDoNotMatch')">
-            Passwords do not match!
-          </mat-error>
-        </mat-form-field>
-        <button mat-raised-button [disabled]="!passwordForm.valid" type="submit">Save</button>
-        <button (click)=togglePass() mat-button>Cancel</button>
-
-      </form>
     </div>
 
-  </mat-card-content>
-</mat-card>
+    <div class="sub-container-2">
+      <span class="email">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title> Email </mat-card-title>
+            <mat-card-subtitle *ngIf="emailDisable"> Change your email address </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+
+            <div class="container-btn-email" *ngIf="!emailDisable">
+              <mat-card-subtitle> {{ user.email}} </mat-card-subtitle>
+              <button class="btn-change-email"  color="warn" (click)=toggleEmail() mat-raised-button>EDIT</button>
+            </div>
+
+            <div>
+              <form [formGroup]="emailForm" (ngSubmit)=onChangeEmail(emailForm) fxLayout="column">
+
+                <mat-form-field *ngIf="emailDisable">
+                  <input matInput type="email" formControlName="email" placeholder="Enter a new Email">
+                  <mat-error *ngIf="emailForm.controls['email'].errors?.required &&
+            emailForm.controls['email'].touched">
+                    Please enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+
+                <button *ngIf="emailDisable" color="warn"  mat-raised-button [disabled]="!emailForm.valid" type="submit">Save</button>
+
+                <button *ngIf="emailDisable" color="warn"  (click)=toggleEmail() mat-button>Cancel</button>
+              </form>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </span>
+
+
+      <span class="pass">
+        <mat-card>
+          <mat-card-content>
+            <div>
+              <mat-card *ngIf="!passDisable">
+                <button (click)=togglePass() mat-button>Change Password</button>
+              </mat-card>
+
+              
+              <form *ngIf="passDisable" [formGroup]="passwordForm" (ngSubmit)=onChangePass(passwordForm) fxLayout="column">
+
+                <mat-form-field appearance="outline">
+                  <input matInput type="password" formControlName="currentPassword" placeholder="Current Password">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <input matInput type="password" formControlName="newPassword" placeholder="New Password">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <input matInput type="password" formControlName="confirmPassword" [errorStateMatcher]="errorMatcher" placeholder="Confirm Password">
+                  <mat-error *ngIf="passwordForm.hasError('passwordsDoNotMatch')">
+                    Passwords do not match!
+                  </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="warn"  [disabled]="!passwordForm.valid" type="submit">Save</button>
+                <button (click)=togglePass() color="warn"  mat-button>Cancel</button>
+              </form>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </span>
+
+    </div>
+
+    <div class="sub-container-3">
+
+    </div>
+
+  </div>
+
+
+</div>
