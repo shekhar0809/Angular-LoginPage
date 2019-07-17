@@ -22,7 +22,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AuthGuard } from './auth.guard';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DetailsComponent } from './weather/details/details.component';
+import { WeatherModule } from './weather/weather.module';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import {MatDialogModule} from '@angular/material/dialog';
   imports: [
     BrowserModule,
     AdminModule,
+    WeatherModule,
+    HttpClientModule,
     MatDialogModule,
     MatCheckboxModule,
     MatMenuModule,
@@ -74,6 +78,10 @@ import {MatDialogModule} from '@angular/material/dialog';
         path: 'dashboard/:uname' ,
         component: DashboardComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'weather',
+        component: DetailsComponent
       },
       {
         path: '' ,

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { validateBasis } from '@angular/flex-layout';
 import { JsonpClientBackend } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
 
   validate(key) {
@@ -36,6 +39,8 @@ export class LoginService {
     }
     else {
       alert("Invalid username/password!");
+      user.isLoggedin = false;
+      localStorage.setItem(user.userName , JSON.stringify(user) );
     }
     
     return user;

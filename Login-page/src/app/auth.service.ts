@@ -26,6 +26,7 @@ export class AuthService {
   {
     this.UserData = this.loginService.login( form.value );
     this.loggedIn = this.UserData['isLoggedin']
+    console.log(this.loggedIn)
 
     if( form.value.rememberMe ) {
       sessionStorage.setItem( 'username' , form.value.username );
