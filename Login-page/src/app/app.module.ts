@@ -32,12 +32,11 @@ import { WeatherModule } from './weather/weather.module';
     AppComponent,
     WelcomeComponent,
     LoginComponent,
-
     RegisterComponent,
     ContactComponent,
     NavbarComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
