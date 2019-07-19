@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherService } from '../../service/weather.service';
+import { weatherTemplate } from '../weather.module';
+import { AddCardService } from '../add-card.service';
 
 @Component({
   selector: 'app-weather-card',
@@ -10,43 +12,43 @@ import { WeatherService } from '../../service/weather.service';
 })
 export class WeatherCardComponent implements OnInit {
 
-  city: string;
-  state: string;
-  weather_type: string
-  temp: number;
-  temp_max: number;
-  temp_min: number;
-  hum: number;
-  wind: number;
-  today: string;
+  @Input() weatherData: weatherTemplate;
 
 
   sub1: Subscription;
 
-constructor(public activeRouter: ActivatedRoute, 
-    public weather: WeatherService
+  constructor(public activeRouter: ActivatedRoute,
+    public weather: WeatherService,
+    private addService: AddCardService
   ) {
   }
 
-  ngOnInit() {  
-    this.sub1 = this.weather.getCityWeatherByName("Delhi").subscribe(result => {
-      console.log(result)
+  ngOnInit() {
 
-      this.city = result.name
+    this.update()
 
-      this.hum = result.main.humidity;
-      this.temp = result.main.temp;
+  }
 
-      this.temp_max = result.main.temp_max;
-      this.temp_min = result.main.temp_min;
 
-      this.weather_type = result.weather[0].main
 
-    })
+  update() {
+    // for (let i = 0; i < this.addService.cards.length; i++) {
+
+    //   this.sub1 = this.weather.getCityWeather(this.addService.cards[i].city).subscribe(result => {
+    //     console.log(result)
+        
+    //     this.addService.cards[i].hum = result.main.humidity;
+    //     this.addService.cards[i].temp = result.main.temp;
+
+    //     this.addService.cards[i].temp_max = result.main.temp_max;
+    //     this.addService.cards[i].temp_min = result.main.temp_min;
+
+    //     this.addService.cards[i].weather_type = result.weather[0].main;
+    //   }
+    // }
   }
 
   ngOnDestroy() {
     this.sub1.unsubscribe();
   }
-
 }

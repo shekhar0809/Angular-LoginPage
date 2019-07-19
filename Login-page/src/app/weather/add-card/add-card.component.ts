@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { weatherTemplate } from '../weather.module';
+import { AddCardService } from '../add-card.service';
 
 @Component({
   selector: 'app-add-card',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-card.component.css']
 })
 export class AddCardComponent implements OnInit {
-
-  constructor() { }
-
+  
   ngOnInit() {
   }
+
+  constructor(
+    private addService: AddCardService   
+  ) { }
+
+  addCard() {
+    this.addService.addCard()
+
+    console.log(this.addService.cards)
+  }
+
+
 
 }
