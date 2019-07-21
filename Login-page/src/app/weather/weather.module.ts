@@ -16,6 +16,7 @@ export class WeatherModule {}
 
 
 export interface weatherTemplate {
+    city: string;
   weather_type: string
   temp: number;
   temp_max: number;

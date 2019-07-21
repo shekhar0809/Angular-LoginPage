@@ -1,5 +1,5 @@
 <section class="weather__card">
-    <span class="city-name__text">{{ city }}</span>
+    <span class="city-name__text">{{ cityName }}</span>
     <div class="weather-icon__container" [ngSwitch]="true">
       <svg *ngSwitchCase="condition === 'Clouds'" viewBox="2436.9 -843.1 275.5 274.1">
         <g data-name="cloudy icon" transform="translate(84 790)">
@@ -9,7 +9,7 @@
                 data-name="Subtraction 1"/>
         </g>
       </svg>
-  
+
       <svg *ngSwitchCase="condition === 'Rain' || condition === 'Drizzle'" viewBox="3170 -843.1 163.5 242.7">
         <g data-name="Rain Icon">
           <g data-name="Water Drops">
@@ -18,7 +18,7 @@
           </g>
         </g>
       </svg>
-  
+
       <svg *ngSwitchCase="condition === 'Storm'" viewBox="3487.9 -810.7 291.2 200.3">
         <g data-name="Strom icon" transform="translate(1959 -1260.7)">
           <ellipse cx="55.3" cy="51.7" class="cls-1" data-name="Ellipse 14" rx="55.3" ry="51.7"
@@ -43,12 +43,12 @@
                 data-name="Path 60"/>
         </g>
       </svg>
-  
-  
+
+
       <svg *ngSwitchCase="condition === 'Sunny' || condition === 'Clear'" viewBox="2050 -845 262 262">
         <circle cx="131" cy="131" r="131" fill="#ffde17" data-name="Sun Icon" transform="translate(2050 -845)"/>
       </svg>
-  
+
     </div>
     <div class="temperature-text__container">
       <span class="temperature__text">{{ temp }}</span>
@@ -60,7 +60,7 @@
         <svg class="min-arrow__icon" viewBox="188.5 807 21 21">
           <path fill="#00ff9b" d="M209.5 817.5h-21L199 828z" data-name="Min Arrow"/>
         </svg>
-  
+
         <span class="min-temperature__text">{{ temp_min }}</span>
         <span class="min__text">Min</span>
       </div>

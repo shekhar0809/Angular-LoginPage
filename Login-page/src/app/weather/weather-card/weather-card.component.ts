@@ -14,6 +14,13 @@ export class WeatherCardComponent implements OnInit {
 
   @Input() weatherData: weatherTemplate;
 
+  cityName: string;
+  weather_type: string
+  temp: number;
+  temp_max: number;
+  temp_min: number;
+  hum: number;
+  wind: number;
 
   sub1: Subscription;
 
@@ -32,21 +39,17 @@ export class WeatherCardComponent implements OnInit {
 
 
   update() {
-    // for (let i = 0; i < this.addService.cards.length; i++) {
+    for (let i = 0; i < this.addService.cards.length; i++) {
 
-    //   this.sub1 = this.weather.getCityWeather(this.addService.cards[i].city).subscribe(result => {
-    //     console.log(result)
-        
-    //     this.addService.cards[i].hum = result.main.humidity;
-    //     this.addService.cards[i].temp = result.main.temp;
+    this.cityName = this.addService.cards[i].city
+      this.weather_type =  this.addService.cards[i].weather_type;
+      this.temp =  this.addService.cards[i].temp;
+      this.temp_max =  this.addService.cards[i].temp_max;
+      this.temp_min =  this.addService.cards[i].temp_min;
+      this.hum =   this.addService.cards[i].hum;
 
-    //     this.addService.cards[i].temp_max = result.main.temp_max;
-    //     this.addService.cards[i].temp_min = result.main.temp_min;
-
-    //     this.addService.cards[i].weather_type = result.weather[0].main;
-    //   }
-    // }
   }
+}
 
   ngOnDestroy() {
     this.sub1.unsubscribe();

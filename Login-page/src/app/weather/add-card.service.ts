@@ -3,43 +3,41 @@ import { weatherTemplate } from './weather.module';
 import { WeatherService } from '../service/weather.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AddCardService {
 
-  cards: weatherTemplate[];
+    cards: weatherTemplate[];
+
+    constructor(
+        private weather: WeatherService
+    ) {
+        this.cards = []
+    }
+
+    addCard() {
+
+        let cityName = this.askCity();
+
+        this.weather.getCityWeather("Noida")
+        .subscribe(result => {
+            console.log(result)
+            this.cards.push({
+                city: result.name,
+                weather_type: result.weather[0].main,
+                temp: result.main.temp,
+                temp_max: result.main.temp_max,
+                temp_min: result.main.temp_min,
+                hum:  result.main.humidity,
+                wind: 0,
+            });
+        })
 
 
-  constructor(
-    private weather: WeatherService
-  ) {
-    this.cards = []
-  }
+    }
 
-
-
-  addCard() {
-
-    let cityName = this.askCity();
-
-    this.weather.getCityWeather(cityName)
-      .subscribe((result) => {
-        this.cards.push({
-          weather_type: result.weather[0].main,
-          temp: result.main.temp,
-          temp_max: result.main.temp_max,
-          temp_min: result.main.temp_min,
-          hum:  result.main.humidity,
-          wind: 0,
-
-        });
-      })
-
-
-  }
-
-  askCity() {
-    return "string"
-  }
+    askCity() {
+        return ""
+    }
 
 }
