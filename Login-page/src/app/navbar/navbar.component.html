@@ -1,6 +1,6 @@
-<mat-card  [style.backgroundColor]="'orangered'"  >
+<mat-card [style.backgroundColor]="'orangered'">
   <span>
-    <button  mat-raised-button [matMenuTriggerFor]="menu">Menu</button>
+    <button mat-raised-button [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">
       <a routerLink="profile">
         <button mat-menu-item>Profile</button>
@@ -17,14 +17,15 @@
 
   <span>
     <a routerLink="register">
-      <button mat-raised-button  > Sign Up </button>
+      <button mat-raised-button> Sign Up </button>
     </a>
   </span>
 
   <span>
     <a routerLink="weather">
-      <button mat-raised-button  > Weather </button>
+      <button mat-raised-button> Weather </button>
     </a>
   </span>
+
 
 </mat-card>

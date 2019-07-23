@@ -8,8 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule,MatCardModule } from '@angular/material';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -18,13 +18,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminModule } from './admin/admin.module';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AuthGuard } from './auth.guard';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DetailsComponent } from './weather/details/details.component';
 import { WeatherModule } from './weather/weather.module';
+import { AskCityComponent } from './weather/ask-city/ask-city.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -45,13 +47,15 @@ import { WeatherModule } from './weather/weather.module';
     HttpClientModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatAutocompleteModule,
     MatMenuModule,
     MatToolbarModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    MatButtonModule, 
-    MatInputModule, 
-    MatSelectModule, 
+    FormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
     MatIconModule,
     MatCardModule,
     MatTabsModule,
@@ -60,37 +64,43 @@ import { WeatherModule } from './weather/weather.module';
       {
         path: 'login',
         component: LoginComponent
-      } ,
+      },
       {
         path: 'register',
         component: WelcomeComponent
       },
       {
-        path: 'home' ,
+        path: 'home',
         component: HomeComponent
       },
       {
-        path: 'contact' ,
+        path: 'contact',
         component: ContactComponent
       },
       {
-        path: 'dashboard/:uname' ,
+        path: 'dashboard/:uname',
         component: DashboardComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'ask',
+        component: AskCityComponent
       },
       {
         path: 'weather',
         component: DetailsComponent
       },
       {
-        path: '' ,
+        path: '',
         component: HomeComponent
       }
     ]),
     BrowserAnimationsModule,
   ],
+
+
   providers: [],
   bootstrap: [AppComponent]
-  
+
 })
 export class AppModule { }

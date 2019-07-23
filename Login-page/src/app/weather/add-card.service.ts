@@ -15,29 +15,23 @@ export class AddCardService {
         this.cards = []
     }
 
-    addCard() {
-
-        let cityName = this.askCity();
-
-        this.weather.getCityWeather("Noida")
-        .subscribe(result => {
-            console.log(result)
-            this.cards.push({
-                city: result.name,
-                weather_type: result.weather[0].main,
-                temp: result.main.temp,
-                temp_max: result.main.temp_max,
-                temp_min: result.main.temp_min,
-                hum:  result.main.humidity,
-                wind: 0,
-            });
-        })
+    addCard(city) {
+        this.weather.getCityWeather(city)
+            .subscribe(result => {
+                console.log(result)
+                this.cards.push({
+                    city: result.name,
+                    weather_type: result.weather[0].main,
+                    temp: result.main.temp,
+                    temp_max: result.main.temp_max,
+                    temp_min: result.main.temp_min,
+                    hum: result.main.humidity,
+                    wind: 0,
+                });
+            })
 
 
     }
 
-    askCity() {
-        return ""
-    }
 
 }

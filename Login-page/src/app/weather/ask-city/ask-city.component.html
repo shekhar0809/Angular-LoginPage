@@ -1,1 +1,15 @@
-<button mat-raised-button (click)="openDialog()">Pick one</button>
+<h1 mat-dialog-title>Choose a City!</h1>
+<div mat-dialog-content>
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" matInput [formControl]="name" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onOk()" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

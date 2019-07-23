@@ -20,33 +20,32 @@ export class LoginComponent implements OnInit {
     rememberMe: false
   })
 
-  constructor( 
+  constructor(
     private formBuilder: FormBuilder,
     private login: LoginService,
     private auth: AuthService
-   ) { }
+  ) { }
 
   ngOnInit() {
-    this.autofill();    
+    this.autofill();
   }
 
-  onLogin( form: FormGroup )
-  {
+  onLogin(form: FormGroup) {
     this.auth.Login(form);
   }
 
   autofill() {
-    if( sessionStorage.getItem('username') ) {
+    if (sessionStorage.getItem('username')) {
       this.loginForm.controls['username'].setValue(sessionStorage.getItem('username'));
       // this.auto_userName = ;
     }
 
-    if( sessionStorage.getItem('password') ) {
+    if (sessionStorage.getItem('password')) {
       this.loginForm.controls['password'].setValue(sessionStorage.getItem('password'));
       // this.auto_passWord = sessionStorage.getItem('password');
     }
 
-    return ;
+    return;
   }
 
 }
