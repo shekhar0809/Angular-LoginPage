@@ -8,11 +8,13 @@ import { WeatherService } from '../service/weather.service';
 export class AddCardService {
 
     cards: weatherTemplate[];
+    options: string[];
 
     constructor(
         private weather: WeatherService
     ) {
         this.cards = []
+        this.options = []
     }
 
     addCard(city) {
@@ -31,6 +33,14 @@ export class AddCardService {
             })
 
 
+    }
+
+    addOption(option) {
+        if (this.options.indexOf(option) < 0) {
+            this.options.push(option)
+        }
+
+        this.options.sort();
     }
 
 

@@ -29,7 +29,8 @@ export class AddCardComponent implements OnInit {
     let city: string
     const dialogRef = this.dialog.open(AskCityComponent,
       {
-        width: '250px',
+        width: 'auto',
+        height: 'auto',
         data: { city: city }
       });
 
@@ -38,8 +39,7 @@ export class AddCardComponent implements OnInit {
       city = result;
       this.addService.addCard(city)
     });
-    // console.log("add-card" , city)
-    // return city
+    
   }
 
 

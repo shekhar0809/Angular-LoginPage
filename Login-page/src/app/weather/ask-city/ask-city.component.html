@@ -1,5 +1,6 @@
-<h1 mat-dialog-title>Choose a City!</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title *ngIf="add_check">Choose a City!</h1>
+
+<div mat-dialog-content *ngIf="add_check">
     <mat-form-field class="example-full-width">
         <input type="text" placeholder="Pick one" matInput [formControl]="name" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
@@ -8,8 +9,27 @@
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
+    <button mat-button (click)="toggleCity()">not your city?</button>
+
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
+
+<div mat-dialog-actions *ngIf="add_check">
+    <button mat-button (click)="onNoClick()">Cancel</button>
     <button mat-button (click)="onOk()" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
+
+
+<!-- ======================================================================= -->
+
+<h1 mat-dialog-title *ngIf="!add_check">Enter a City!</h1>
+
+<div mat-dialog-content *ngIf="!add_check">
+    <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Enter a city name" matInput [formControl]="newCity">
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions *ngIf="!add_check">
+    <button mat-button (click)="toggleCity()">Cancel</button>
+    <button mat-button (click)="addCity()">Add City</button>
 </div>

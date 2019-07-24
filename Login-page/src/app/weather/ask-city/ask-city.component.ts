@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AddCardComponent } from '../add-card/add-card.component';
 import { FormControl } from '@angular/forms';
+import { AddCardService } from '../add-card.service';
 
 @Component({
   selector: 'app-ask-city',
@@ -13,14 +14,21 @@ import { FormControl } from '@angular/forms';
 
 export class AskCityComponent implements OnInit {
 
+  add_check: boolean = true;
+  options: string[]
+
 
   ngOnInit() {
   }
 
   constructor(
     public dialogRef: MatDialogRef<AddCardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string,
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: string, 
+    private addCardService: AddCardService
+  ) 
+  { 
+    this.options = this.addCardService.options
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -30,9 +38,21 @@ export class AskCityComponent implements OnInit {
     this.dialogRef.close(this.name.value);
   }
 
-
-
   name = new FormControl();
-  options: string[] = ['Delhi', 'Mumbai', 'Chennai', 'Noida'];
+  newCity = new FormControl();
+
+  toggleCity(): void {
+    if (this.add_check) {
+      this.add_check = false
+    }
+    else {
+      this.add_check = true
+    }
+  }
+
+  addCity(): void {
+    this.toggleCity()
+    this.addCardService.addOption(this.newCity.value)
+  }
 
 }
