@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SignupService } from '../signup.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validateBasis } from '@angular/flex-layout';
+import { weatherTemplate } from '../weather/weather.module';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,7 @@ import { validateBasis } from '@angular/flex-layout';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
   registerForm: FormGroup = this.formBuilder.group({
     firstName: ['', Validators.required],
     lastName: [''],
@@ -18,7 +20,7 @@ export class RegisterComponent implements OnInit {
     password: ['', Validators.required],
     isLoggedin: [false],
     phone: [['']]
-  })
+  });
 
   constructor(
     private formBuilder: FormBuilder,

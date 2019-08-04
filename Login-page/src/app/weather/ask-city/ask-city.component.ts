@@ -4,6 +4,13 @@ import { AddCardComponent } from '../add-card/add-card.component';
 import { FormControl } from '@angular/forms';
 import { AddCardService } from '../add-card.service';
 
+
+export interface CityName {
+  id: string;
+  name: string;
+}
+
+
 @Component({
   selector: 'app-ask-city',
   templateUrl: './ask-city.component.html',
@@ -11,23 +18,30 @@ import { AddCardService } from '../add-card.service';
 })
 
 
-
 export class AskCityComponent implements OnInit {
 
   add_check: boolean = true;
-  options: string[]
+  options: CityName[] ;
 
-
-  ngOnInit() {
-  }
 
   constructor(
     public dialogRef: MatDialogRef<AddCardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string, 
+    @Inject(MAT_DIALOG_DATA) public data: string,
     private addCardService: AddCardService
-  ) 
-  { 
-    this.options = this.addCardService.options
+  ) {
+  }
+
+
+  ngOnInit() {
+    this.addCardService.getOptions().subscribe(res => {
+      this.options = res.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data()
+        } as CityName;
+      });
+    });
+
   }
 
   onNoClick(): void {
@@ -43,16 +57,15 @@ export class AskCityComponent implements OnInit {
 
   toggleCity(): void {
     if (this.add_check) {
-      this.add_check = false
-    }
-    else {
-      this.add_check = true
+      this.add_check = false;
+    } else {
+      this.add_check = true;
     }
   }
 
   addCity(): void {
-    this.toggleCity()
-    this.addCardService.addOption(this.newCity.value)
+    this.toggleCity();
+    this.addCardService.addOption(this.newCity.value);
   }
 
 }

@@ -15,7 +15,7 @@ export class WeatherCardComponent implements OnInit {
   @Input() weatherData: weatherTemplate;
 
   cityName: string;
-  weather_type: string
+  weather_type: string;
   temp: number;
   temp_max: number;
   temp_min: number;
@@ -24,7 +24,8 @@ export class WeatherCardComponent implements OnInit {
 
   sub1: Subscription;
 
-  constructor(public activeRouter: ActivatedRoute,
+  constructor(
+    public activeRouter: ActivatedRoute,
     public weather: WeatherService,
     private addService: AddCardService
   ) {
@@ -32,7 +33,7 @@ export class WeatherCardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.update()
+    this.update();
 
   }
 
@@ -41,15 +42,15 @@ export class WeatherCardComponent implements OnInit {
   update() {
     for (let i = 0; i < this.addService.cards.length; i++) {
 
-    this.cityName = this.addService.cards[i].city
-      this.weather_type =  this.addService.cards[i].weather_type;
-      this.temp =  this.addService.cards[i].temp;
-      this.temp_max =  this.addService.cards[i].temp_max;
-      this.temp_min =  this.addService.cards[i].temp_min;
-      this.hum =   this.addService.cards[i].hum;
+      this.cityName = this.addService.cards[i].city;
+      this.weather_type = this.addService.cards[i].weather_type;
+      this.temp = this.addService.cards[i].temp;
+      this.temp_max = this.addService.cards[i].temp_max;
+      this.temp_min = this.addService.cards[i].temp_min;
+      this.hum = this.addService.cards[i].hum;
 
+    }
   }
-}
 
   ngOnDestroy() {
     this.sub1.unsubscribe();

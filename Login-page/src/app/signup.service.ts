@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
-  
 
-  constructor() { }
 
-  addUser(object) {
+  constructor(
+    private db: AngularFirestore
+  ) { }
+
+  addUser(data) {
     //check if email already exists
-
-    localStorage.setItem( object.userName , JSON.stringify(object) );
+    this.db.collection('userData').add(data);
+    // localStorage.setItem( object.userName , JSON.stringify(object) );
   }
 
   validate(key) {

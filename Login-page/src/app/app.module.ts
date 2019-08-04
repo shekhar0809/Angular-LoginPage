@@ -27,6 +27,9 @@ import { DetailsComponent } from './weather/details/details.component';
 import { WeatherModule } from './weather/weather.module';
 import { AskCityComponent } from './weather/ask-city/ask-city.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -42,6 +45,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     AdminModule,
     WeatherModule,
     HttpClientModule,
